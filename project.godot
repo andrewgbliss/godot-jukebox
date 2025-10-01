@@ -1,0 +1,46 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Godot Jukebox"
+run/main_scene="uid://b31r4po3jgb3u"
+config/features=PackedStringArray("4.5", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://dijvrspm01omr"
+config/icon="uid://dijvrspm01omr"
+config/windows_native_icon="res://assets/img/brand/icon-1024.ico"
+boot_splash/minimum_display_time=2000
+
+[autoload]
+
+EventBus="*res://blisscode/core/bus/event_bus.gd"
+GameManager="*res://blisscode/core/game/game_manager.tscn"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/borderless=true
+window/size/always_on_top=true
+window/size/transparent=true
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
+window/per_pixel_transparency/allowed=true
+
+[gui]
+
+theme/custom="uid://b2r2bk4bp4lgv"
+
+[rendering]
+
+renderer/rendering_method="mobile"
+viewport/transparent_background=true
