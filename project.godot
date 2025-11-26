@@ -21,13 +21,25 @@ boot_splash/minimum_display_time=2000
 
 [autoload]
 
+DataStore="*res://blisscode/core/data/data_store.gd"
+ResourceStore="*res://blisscode/core/data/resource_store.gd"
+UserDataStore="*res://blisscode/core/data/user_data_store.tscn"
 EventBus="*res://blisscode/core/bus/event_bus.gd"
 GameManager="*res://blisscode/core/game/game_manager.tscn"
+SceneManager="*res://blisscode/core/scene/scene_manager.tscn"
+ScreenShake="*res://blisscode/core/camera/screen_shake/screen_shake.gd"
+GameUi="*res://blisscode/ui/game/game_ui.tscn"
+SpawnManager="*res://blisscode/core/spawning/spawn_manager.tscn"
+RewindManager="*res://blisscode/core/data/rewind_manager.gd"
+NotifcationsToast="*res://blisscode/ui/notifications/notifcations_toast.tscn"
+DialogManager="*res://blisscode/dialog/dialog_manager.tscn"
+WorldTimeService="*res://blisscode/world_time/world_time_service.tscn"
+WeatherService="*res://blisscode/weather/weather_service.tscn"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=360
+window/size/viewport_height=640
 window/size/borderless=true
 window/size/always_on_top=true
 window/size/transparent=true
@@ -35,6 +47,7 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 window/per_pixel_transparency/allowed=true
+window/handheld/orientation=1
 
 [gui]
 
@@ -43,4 +56,5 @@ theme/custom="uid://b2r2bk4bp4lgv"
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
 viewport/transparent_background=true

@@ -9,7 +9,6 @@ extends Node2D
 
 signal paused_toggled(is_paused: bool)
 
-
 func open_user_folder():
 	var user_data_path = ProjectSettings.globalize_path("user://")
 	OS.shell_open(user_data_path)
@@ -18,8 +17,6 @@ func remove_user_data():
 	reset()
 
 func _ready():
-	transparent_window()
-	set_window_position(get_bottom_right_position())
 	call_deferred("_after_ready")
 	
 func _after_ready():
@@ -27,12 +24,16 @@ func _after_ready():
 		return
 	# Connect signals
 	EventBus.audio_volume_changed.connect(_on_audio_volume_changed)
+	EventBus.world_changed.connect(_on_world_changed)
 	
 	# Audio
 	set_audio_volumes()
 	
 	# Cursor
 	set_custom_cursor()
+	
+	transparent_window()
+	set_window_position(get_bottom_right_position())
 
 	print("GameManager ready")
 
@@ -51,13 +52,28 @@ func _on_audio_volume_changed(bus_idx: int, volume: float):
 	AudioUtils.set_volume(bus_idx, volume)
 	user_config.save_to_file()
 
+func set_zoom_level(zoom_level: float):
+	user_config.zoom_level = zoom_level
+	user_config.save_to_file()
+	EventBus.zoom_level_changed.emit(zoom_level)
+
 func _on_world_changed(to_room_id: String, from_room_id: String, _scene_path: String, _scene_transition_name: String):
 	game_config.from_world_door_id = from_room_id
 	game_config.to_world_door_id = to_room_id
 	
+func game_start():
+	GameUi.game_menus.menu_stack.pop_all()
+	SceneManager.goto_scene(GameManager.game_config.game_start_scene)
+
+func game_restore():
+	GameManager.game_config.set_state(GameConfig.GAME_STATE.GAME_RESTORE)
+	GameUi.game_menus.menu_stack.pop_all()
+	SceneManager.goto_scene(GameManager.game_config.game_restore_scene)
+
 func reset():
 	user_config.reset()
 	game_config.reset()
+	UserDataStore.reset()
 	print("User data reset")
 
 func print_config():
@@ -104,3 +120,25 @@ func get_bottom_right_position() -> Vector2:
 func set_window_position(pos: Vector2):
 	# Set the window position.
 	DisplayServer.window_set_position(pos)
+
+func snap_to_grid(pos: Vector2) -> Vector2:
+	var current_pos = pos
+	var snapped_pos = Vector2(
+		round(current_pos.x / game_config.grid_size) * game_config.grid_size,
+		round(current_pos.y / game_config.grid_size) * game_config.grid_size
+	)
+	return snapped_pos
+
+func reset_scene():
+	get_tree().reload_current_scene()
+
+func set_gravity_dir(dir: Vector2):
+	game_config.set_gravity_dir(dir)
+
+func toggle_anti_gravity() -> int:
+	if game_config.gravity_dir == Vector2(0, 1):
+		game_config.set_gravity_dir(Vector2(0, -1))
+		return -1
+	else:
+		game_config.set_gravity_dir(Vector2(0, 1))
+	return 1
