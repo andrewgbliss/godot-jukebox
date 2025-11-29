@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b31r4po3jgb3u"]
+[gd_scene load_steps=22 format=3 uid="uid://b31r4po3jgb3u"]
 
 [ext_resource type="Script" uid="uid://stobcojgfp8s" path="res://blisscode/ui/audio/jukebox/jukebox.gd" id="1_lj7v1"]
 [ext_resource type="PackedScene" uid="uid://cyd1wnj2k44f" path="res://blisscode/ui/audio/jukebox/song_container.tscn" id="2_cjec2"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c3uiwx4887mwy" path="res://assets/img/ui/audio/AudioControls_Pause.png" id="5_8g36o"]
 [ext_resource type="Texture2D" uid="uid://b1p5mxahdao8j" path="res://assets/img/ui/audio/AudioControls_Play-focus-export.png" id="6_sh6ne"]
 [ext_resource type="Texture2D" uid="uid://d2isl1264nh3v" path="res://assets/img/ui/audio/AudioControls_Repeat.png" id="6_u7i2i"]
+[ext_resource type="Texture2D" uid="uid://c27ti7xp55xjq" path="res://assets/img/Stan-Bg-32x32.png" id="7_37c2h"]
 [ext_resource type="Texture2D" uid="uid://526ijvdvp8b" path="res://assets/img/ui/audio/AudioControls_Pause-focus.png" id="7_838yk"]
 [ext_resource type="Texture2D" uid="uid://dw0cgydf7rmnl" path="res://assets/img/ui/audio/AudioControls_Next.png" id="7_up0q2"]
 [ext_resource type="Texture2D" uid="uid://cvq7ro02qupr4" path="res://assets/img/ui/audio/AudioControls_Stop-focus-export.png" id="9_j2eg5"]
@@ -29,21 +30,21 @@ process_mode = 3
 script = ExtResource("1_lj7v1")
 hide_on_start = false
 panel = NodePath("CanvasLayer/Panel")
-title_label = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer/Label")
-previous_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer/PrevButton")
-play_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer/PlayButton")
-stop_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer/StopButton")
-pause_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer/PauseButton")
-repeat_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer/RepeatButton")
-next_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer/NextButton")
+title_label = NodePath("")
+previous_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/PrevButton")
+play_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/PlayButton")
+stop_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/StopButton")
+pause_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/PauseButton")
+repeat_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/RepeatButton")
+next_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/NextButton")
 songlist_container = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/ScrollContainer/SongListContainer")
 track_progress = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/HBoxContainer/TrackProgress")
 time_label = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/HBoxContainer/TimeLabel")
 song_container_scene = ExtResource("2_cjec2")
 scroll_container = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/ScrollContainer")
 player_controls = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls")
-minimize_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer/MinimizeButton")
-close_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer/CloseButton")
+minimize_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer2/Control/MinimizeButton")
+close_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer2/Control/CloseButton")
 add_folder_button = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Folders/MarginContainer/VBoxContainer/HBoxContainer/AddFolderButton")
 folder_browser_dialog = NodePath("FolderBrowserDialog")
 folders_container = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Folders/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer")
@@ -83,25 +84,73 @@ size_flags_vertical = 0
 alignment = 2
 script = ExtResource("3_382q3")
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Godot Jukebox"
 
-[node name="MinimizeButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer"]
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer2/Control"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+offset_right = 256.0
+offset_bottom = 256.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_37c2h")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer2/Control"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 13.0
+offset_right = 109.0
+offset_bottom = 45.0
+text = "JUKEBOX"
+
+[node name="VolumeSlider" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer2/Control" instance=ExtResource("3_x3yxh")]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 21.0
+offset_right = 510.0
+offset_bottom = 21.0
+size_flags_horizontal = 3
+show_label = false
+
+[node name="Label" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer2/Control/VolumeSlider/VBoxContainer" index="0"]
+visible = false
+
+[node name="HSlider" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer2/Control/VolumeSlider/VBoxContainer" index="1"]
+focus_next = NodePath("../../../../../../MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/HBoxContainer/TrackProgress")
+
+[node name="MinimizeButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer2/Control"]
+z_index = 100
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -38.0
+offset_top = 3.0
+offset_right = -22.0
+offset_bottom = 19.0
+grow_horizontal = 0
 texture_normal = ExtResource("4_rx2f3")
 
-[node name="CloseButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer"]
-layout_mode = 2
+[node name="CloseButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer2/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
 texture_normal = ExtResource("5_6wqqx")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
+theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
@@ -144,78 +193,66 @@ text = "0:00"
 [node name="TrackProgress" type="HSlider" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_bottom = NodePath("../../PlayerControls/HBoxContainer/HBoxContainer/PlayButton")
-focus_next = NodePath("../../PlayerControls/HBoxContainer/HBoxContainer/PlayButton")
+focus_neighbor_bottom = NodePath("../../PlayerControls/PlayButton")
+focus_next = NodePath("../../PlayerControls/PlayButton")
 max_value = 1.0
 step = 0.01
 
 [node name="PlayerControls" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer"]
 layout_mode = 2
-focus_next = NodePath("HBoxContainer/HBoxContainer2/VolumeSlider/VBoxContainer/HSlider")
+focus_next = NodePath("../../../../../../MarginContainer2/HBoxContainer2/Control/VolumeSlider/VBoxContainer/HSlider")
 focus_previous = NodePath("../HBoxContainer/TrackProgress")
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="PrevButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer"]
+[node name="PrevButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls"]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 focus_neighbor_left = NodePath("../NextButton")
 focus_next = NodePath("../PlayButton")
 texture_normal = ExtResource("2_utn00")
 texture_focused = ExtResource("5_1o4q0")
+stretch_mode = 0
 
-[node name="PlayButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer"]
+[node name="PlayButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls"]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../../HBoxContainer/TrackProgress")
+focus_neighbor_top = NodePath("../../HBoxContainer/TrackProgress")
 focus_next = NodePath("../RepeatButton")
 texture_normal = ExtResource("3_cjec2")
 texture_focused = ExtResource("6_sh6ne")
+stretch_mode = 0
 
-[node name="PauseButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer"]
+[node name="PauseButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls"]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 focus_next = NodePath("../StopButton")
 texture_normal = ExtResource("5_8g36o")
 texture_focused = ExtResource("7_838yk")
+stretch_mode = 0
 
-[node name="StopButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer"]
+[node name="StopButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls"]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 focus_previous = NodePath("../PauseButton")
 texture_normal = ExtResource("4_6qej7")
 texture_focused = ExtResource("9_j2eg5")
+stretch_mode = 0
 
-[node name="RepeatButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer"]
+[node name="RepeatButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls"]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 texture_normal = ExtResource("6_u7i2i")
 texture_focused = ExtResource("12_wqjp7")
+stretch_mode = 0
 
-[node name="NextButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer"]
+[node name="NextButton" type="TextureButton" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls"]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 focus_neighbor_right = NodePath("../PrevButton")
 focus_previous = NodePath("../RepeatButton")
 texture_normal = ExtResource("7_up0q2")
 texture_focused = ExtResource("14_st5x3")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="VolumeSlider" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer2" instance=ExtResource("3_x3yxh")]
-layout_mode = 2
-size_flags_horizontal = 3
-bus_idx = 1
-label_text = "Volume"
-
-[node name="Label" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer2/VolumeSlider/VBoxContainer" index="0"]
-visible = false
-
-[node name="HSlider" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer2/VolumeSlider/VBoxContainer" index="1"]
-focus_next = NodePath("../../../../../../HBoxContainer/TrackProgress")
+stretch_mode = 0
 
 [node name="Folders" type="VBoxContainer" parent="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer"]
 visible = false
@@ -254,4 +291,4 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[editable path="CanvasLayer/Panel/VBoxContainer/MarginContainer/TabContainer/Player/MarginContainer/VBoxContainer/PlayerControls/HBoxContainer/HBoxContainer2/VolumeSlider"]
+[editable path="CanvasLayer/Panel/VBoxContainer/MarginContainer2/HBoxContainer2/Control/VolumeSlider"]

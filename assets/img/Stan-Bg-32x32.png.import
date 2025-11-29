@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddhknyywaa0n5"
-path="res://.godot/imported/Bubble.png-53d86e7a0f5592977030166f38023bbc.ctex"
+uid="uid://c27ti7xp55xjq"
+path="res://.godot/imported/Stan-Bg-32x32.png-8556dd7c84e9589c1d4c697b33826706.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blisscode/particles/bubble/Bubble.png"
-dest_files=["res://.godot/imported/Bubble.png-53d86e7a0f5592977030166f38023bbc.ctex"]
+source_file="res://assets/img/Stan-Bg-32x32.png"
+dest_files=["res://.godot/imported/Stan-Bg-32x32.png-8556dd7c84e9589c1d4c697b33826706.ctex"]
 
 [params]
 

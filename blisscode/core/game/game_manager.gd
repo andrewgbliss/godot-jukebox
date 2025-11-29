@@ -24,13 +24,11 @@ func _after_ready():
 		return
 	# Connect signals
 	EventBus.audio_volume_changed.connect(_on_audio_volume_changed)
-	EventBus.world_changed.connect(_on_world_changed)
 	
 	# Audio
 	set_audio_volumes()
 	
 	# Cursor
-	set_custom_cursor()
 	
 	transparent_window()
 	set_window_position(get_bottom_right_position())
@@ -61,19 +59,11 @@ func _on_world_changed(to_room_id: String, from_room_id: String, _scene_path: St
 	game_config.from_world_door_id = from_room_id
 	game_config.to_world_door_id = to_room_id
 	
-func game_start():
-	GameUi.game_menus.menu_stack.pop_all()
-	SceneManager.goto_scene(GameManager.game_config.game_start_scene)
 
-func game_restore():
-	GameManager.game_config.set_state(GameConfig.GAME_STATE.GAME_RESTORE)
-	GameUi.game_menus.menu_stack.pop_all()
-	SceneManager.goto_scene(GameManager.game_config.game_restore_scene)
 
 func reset():
 	user_config.reset()
 	game_config.reset()
-	UserDataStore.reset()
 	print("User data reset")
 
 func print_config():
